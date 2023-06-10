@@ -1,16 +1,17 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
+
 const app = express();
 dotenv.config();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 const PORT = process.env.PORT || 9000;
 
-app.get("/", (req, res) => {
-  res.send("GET request to the homepage");
-});
-
-app.listen(() => {
+app.listen(PORT, () => {
   mongoose
     .connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
