@@ -25,7 +25,7 @@ class RegisterLogin{
             const { firstName, lastName, password, age, status, role, phoneNumber } = req.body
             const passwordhash = await hash(password, 10)
             const user = await userdb.create({firstName, lastName, password:passwordhash, age, status, role, phoneNumber})
-            res.json({message:'User registration successful.'})
+            res.status(201).json({ message: "User created" });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Error during user registration.' });
@@ -46,9 +46,9 @@ class RegisterLogin{
             if(await compare(password, user.password) || user){
                 const {firstName, lastName, age, status, role, phoneNumber} = user;
                 req.session.user = {firstName, lastName, age, status, role, phoneNumber };
-                return res.json({message:"User login successful."})
+                return res.status(200).json({ message: "User logged in" });
             }
-            res.json({err:"Incorrect login or password."})
+            res.status(400).json({ message: "Incorrect login or password." });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Error during user login.' });
