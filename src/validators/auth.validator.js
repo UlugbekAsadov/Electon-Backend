@@ -18,7 +18,7 @@ const checkNumberRegistrated = async (_, { req }) => {
     throw new Error(ERROR_MESSAGES.NUMBER_ALREADY_REGISTRATED);
   }
 
-  return true
+  return true;
 };
 
 const notEmpArr = [
@@ -57,6 +57,6 @@ export const validate = (req, res, next) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  
+
   next();
 };

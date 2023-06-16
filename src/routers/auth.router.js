@@ -8,7 +8,6 @@ import {
 
 const router = new Router();
 
-
 router.post("/sign-in", loginValidators, validate, RegisterLogin.signIn);
 router.post("/sign-up", registerValidators, validate, RegisterLogin.signUp);
 

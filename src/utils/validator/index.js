@@ -10,6 +10,7 @@ export function isString(inputname) {
     .isString()
     .withMessage(inputname + " must be a string");
 }
+
 export function isLength(inputname, min) {
   return body(inputname)
     .isLength({ min: min })
