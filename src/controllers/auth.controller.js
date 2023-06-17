@@ -4,6 +4,7 @@ import { SUCCESS_MESSAGES } from "../utils/enums/success-messages.js";
 import { ERROR_MESSAGES } from "../utils/enums/error-messages.js";
 import { STATUS, ROLES } from "../utils/enums/user-enum.js";
 
+// METHOD => POST
 // ROUTE => v1/sign-in
 // ACCESS => USER / MODERATOR / ADMIN
 // DESCRIPTION => Logs in user to the platform
@@ -29,6 +30,7 @@ export const signUp = async (req, res) => {
   }
 };
 
+// METHOD => POST
 // ROUTE => v1/sign-up
 // ACCESS => USER / MODERATOR / ADMIN
 // DESCRIPTION => Registers user to the platform
