@@ -6,9 +6,9 @@ import {
   validate,
 } from "../validators/auth.validator.js";
 
-const router = new Router();
+const authRouter = new Router();
 
-router.post("/sign-in", loginValidators, validate, signIn);
-router.post("/sign-up", registerValidators, validate, signUp);
+authRouter.post("/sign-in", loginValidators, validate, signIn);
+authRouter.post("/sign-up", registerValidators, validate, signUp);
 
-export default router;
+export { authRouter };

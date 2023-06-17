@@ -2,8 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-import registerloginrouter from "./routers/auth.router.js";
 import { sessionMiddleware } from "./middleware/session.js";
+import { authRouter } from "./routers/auth.router.js";
+import { productRouter } from "./routers/product.router.js";
 
 const app = express();
 dotenv.config();
@@ -14,7 +15,8 @@ app.use(sessionMiddleware);
 
 const PORT = process.env.PORT || 9000;
 
-app.use("/api", registerloginrouter);
+app.use("/api", authRouter);
+app.use("/api", productRouter);
 
 app.listen(PORT, () => {
   mongoose
