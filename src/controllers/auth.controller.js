@@ -58,10 +58,9 @@ export const signIn = async (req, res) => {
         role,
         phoneNumber,
       };
-
-      return res.status(200).json({ data: user });
+      const token = await user.generateAuthToken()
+      return res.header("x-auth-token", token).status(200).json({ data: user });
     }
-
     res.status(400).json({ message: ERROR_MESSAGES.INVALID_CREDINTIALS });
   } catch (error) {
     console.error(error);

@@ -5,6 +5,7 @@ import cors from "cors";
 import registerloginrouter from "./routers/auth.router.js";
 import { sessionMiddleware } from "./middleware/session.js";
 
+
 const app = express();
 dotenv.config();
 app.use(express.json());
