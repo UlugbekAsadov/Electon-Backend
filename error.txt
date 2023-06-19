@@ -1,0 +1,10 @@
+{
+	"timestamp": "2023-06-19T02:17:23.489Z",
+	"message": "user is not defined",
+	"stack": "ReferenceError: user is not defined\n    at file:///F:/my-progeckt/1/Electon-Backend/src/routers/auth.router.js:14:16\n    at Layer.handle [as handle_request] (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\express\\lib\\router\\index.js:47:12)"
+}
+{
+	"timestamp": "2023-06-19T03:33:08.010Z",
+	"message": "connect ECONNREFUSED 127.0.0.1:27017",
+	"stack": "MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017\n    at Timeout._onTimeout (F:\\my-progeckt\\1\\Electon-Backend\\node_modules\\mongodb\\lib\\sdam\\topology.js:278:38)\n    at listOnTimeout (node:internal/timers:569:17)\n    at process.processTimers (node:internal/timers:512:7)"
+}

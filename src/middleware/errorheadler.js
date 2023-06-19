@@ -25,5 +25,3 @@ export function errorHandler(err, req, res, next) {
   console.log(err);
   res.status(500).json({ error: ERROR_MESSAGES.SERVER_ERROR });
 }
-
-

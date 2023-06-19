@@ -5,6 +5,7 @@ import cors from "cors";
 import registerloginrouter from "./routers/auth.router.js";
 import { sessionMiddleware } from "./middleware/session.js";
 import { errorHandler } from "./middleware/errorheadler.js";
+import { notfound } from "./middleware/notfound.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 9000;
 
 app.use("/api", registerloginrouter);
 
+app.use(notfound);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
