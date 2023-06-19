@@ -4,9 +4,10 @@ import mongoose from "mongoose";
 import cors from "cors";
 import registerloginrouter from "./routers/auth.router.js";
 import { sessionMiddleware } from "./middleware/session.js";
-
+import { errorHandler } from "./middleware/errorheadler.js";
 
 const app = express();
+
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -17,9 +18,11 @@ const PORT = process.env.PORT || 9000;
 
 app.use("/api", registerloginrouter);
 
+app.use(errorHandler);
+
 app.listen(PORT, () => {
   mongoose
-    .connect(process.env.MONGODB_URI, {
+    .connect("mongodb://127.0.0.1:27017/beckend", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
