@@ -63,3 +63,17 @@ export const signIn = asyncHandler(async (req, res) => {
   }
   res.status(400).json({ message: ERROR_MESSAGES.INVALID_CREDINTIALS });
 });
+
+// METHOD => GET
+// ROUTE => v1/get-user
+// ACCESS => USER / MODERATOR / ADMIN
+// DESCRIPTION => Gets element by id
+export const getUserById = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const user = await userdb.findById(userId);
+
+  if (!user)
+    return res.status(404).json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
+
+  res.status(200).json({ data: user });
+});
