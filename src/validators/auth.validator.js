@@ -32,6 +32,7 @@ const notEmpArr = [
 const isStrArr = ["firstName", "lastName"].map(
   (item) => (item = isString(item))
 );
+
 const isNumArr = ["age", "phoneNumber"].map((item) => (item = isNumber(item)));
 const islenGthArr = ["password"].map((item) => (item = isLength(item, 8)));
 const isNumberArr = ["phoneNumber"].map((item) => isLength(item, 12));
