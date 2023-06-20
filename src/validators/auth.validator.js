@@ -6,7 +6,6 @@ import {
   isNumber,
   isString,
   notEmpty,
-  validatePassword,
 } from "../utils/validator/index.js";
 
 const checkNumberRegistrated = async (_, { req }) => {
@@ -32,10 +31,10 @@ const notEmpArr = [
 const isStrArr = ["firstName", "lastName"].map(
   (item) => (item = isString(item))
 );
+
 const isNumArr = ["age", "phoneNumber"].map((item) => (item = isNumber(item)));
 const islenGthArr = ["password"].map((item) => (item = isLength(item, 8)));
 const isNumberArr = ["phoneNumber"].map((item) => isLength(item, 12));
-const isPasswordArr = ["password"].map((item) => validatePassword(item));
 
 export const registerValidators = [
   notEmpArr,
@@ -43,7 +42,6 @@ export const registerValidators = [
   isNumArr,
   islenGthArr,
   isNumberArr,
-  isPasswordArr,
   body("phoneNumber").custom(checkNumberRegistrated),
 ].flat();
 

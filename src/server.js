@@ -4,8 +4,12 @@ import mongoose from "mongoose";
 import cors from "cors";
 import registerloginrouter from "./routers/auth.router.js";
 import { sessionMiddleware } from "./middleware/session.js";
+<<<<<<< HEAD
 import { errorHandler } from "./middleware/errorheadler.js";
 import { notfound } from "./middleware/notfound.js";
+=======
+import { errorHandler } from "./middleware/errorHeadler.js";
+>>>>>>> ec3fb3c46141e10ce8a6c11760d06d7ef853bc4c
 
 const app = express();
 
@@ -24,7 +28,7 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   mongoose
-    .connect("mongodb://127.0.0.1:27017/beckend", {
+    .connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

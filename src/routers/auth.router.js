@@ -1,14 +1,21 @@
 import { Router } from "express";
-import { tryCatch } from "../utils/tryCatch.js";
-import { signIn, signUp } from "../controllers/auth.controller.js";
+import {
+  getUserById,
+  signIn,
+  signUp,
+  updateUserById,
+} from "../controllers/auth.controller.js";
 import {
   registerValidators,
   loginValidators,
   validate,
 } from "../validators/auth.validator.js";
+import { hasAccess, protectedRoute } from "../middleware/checkAccess.js";
 
 const router = new Router();
-router.post("/sign-in", loginValidators, validate, tryCatch(signIn));
-router.post("/sign-up", registerValidators, validate, tryCatch(signUp));
+router.post("/sign-in", loginValidators, validate, signIn);
+router.post("/sign-up", registerValidators, validate, signUp);
+router.get("/get-user/:userId", protectedRoute, getUserById);
+router.put("/user/:userId", protectedRoute, hasAccess, updateUserById);
 
 export default router;
