@@ -31,7 +31,7 @@ export const signUp = asyncHandler(async (req, res) => {
     .json({ data: user, message: SUCCESS_MESSAGES.USER_CREATED });
 });
 
-// @@METHOD => POST
+// @METHOD => POST
 // @ROUTE => v1/sign-up
 // @ACCESS => USER / MODERATOR / ADMIN
 // @DESCRIPTION => Registers user to the platform
