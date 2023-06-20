@@ -17,12 +17,6 @@ export function isLength(inputname, min) {
     .withMessage(inputname + " must be min:8 character");
 }
 
-export function validatePassword(inputName) {
-  return body(inputName)
-    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])/)
-    .withMessage(inputName + " must contain both letters and numbers");
-}
-
 export function isNumber(inputname) {
   return body(inputname)
     .isNumeric()
