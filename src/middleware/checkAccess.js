@@ -28,7 +28,6 @@ export const hasAccess = async (req, res, next) => {
   const isActive = req.user.status === STATUS.ACTIVE;
   const isAdmin = req.user.role === ROLES.ADMIN;
 
-  console.log(isActive)
   if (isActive && (isAdmin || isOwner)) {
     return next();
   }
