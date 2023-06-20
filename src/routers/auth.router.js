@@ -15,7 +15,7 @@ import { hasAccess, protectedRoute } from "../middleware/checkAccess.js";
 const router = new Router();
 router.post("/sign-in", loginValidators, validate, signIn);
 router.post("/sign-up", registerValidators, validate, signUp);
-router.get("/get-user/:userId", getUserById);
+router.get("/get-user/:userId", protectedRoute, getUserById);
 router.put("/user/:userId", protectedRoute, hasAccess, updateUserById);
 
 export default router;
