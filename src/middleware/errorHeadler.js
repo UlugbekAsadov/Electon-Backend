@@ -14,7 +14,7 @@ export function errorHandler(err, req, res, next) {
     message: err.message.replace(/\\n/g, "\n\t"),
     stack: err.stack,
   };
-  const logFilePath = path.join(__dirname, "error.txt");
+  const logFilePath = path.join(__dirname, "log.txt");
   const logMessage = `${JSON.stringify(errorLog, null, "\t")}\n`;
 
   fs.appendFile(logFilePath, logMessage, (appendErr) => {
