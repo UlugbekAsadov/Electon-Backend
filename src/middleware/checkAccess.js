@@ -24,11 +24,10 @@ export const protectedRoute = async (req, res, next) => {
 };
 
 export const hasAccess = async (req, res, next) => {
-  const isOwner = req.params.userId === req.tokenId;
   const isActive = req.user.status === STATUS.ACTIVE;
   const isAdmin = req.user.role === ROLES.ADMIN;
 
-  if (isActive && (isAdmin || isOwner)) {
+  if (isActive && isAdmin) {
     return next();
   }
 
