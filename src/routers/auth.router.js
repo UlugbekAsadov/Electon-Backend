@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import {
   getUserById,
   signIn,
@@ -10,6 +11,7 @@ import {
   loginValidators,
   validate,
 } from "../validators/auth.validator.js";
+
 import { hasAccess, protectedRoute } from "../middleware/checkAccess.js";
 
 const router = new Router();

@@ -110,3 +110,4 @@ export const updateUserById = asyncHandler(async (req, res) => {
     .status(200)
     .json({ data: updatingUser, message: SUCCESS_MESSAGES.USER_UPDATED });
 });
+
