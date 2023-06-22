@@ -1,26 +1,35 @@
-import { extname } from "path";
 import multer from "multer";
-import { accessSync, constants } from "fs";
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public");
-  },
+import path from "path";
 
+// Set storage
+const storage = multer.diskStorage({
+  destination: "./public/uploads",
   filename: function (req, file, cb) {
-    const ext = extname(file.originalname);
-    const date = new Date().getTime();
-    file.originalname = "image-" + date + ext;
-    cb(null, file.originalname);
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
   },
 });
 
-export const upload = multer({ storage: storage });
+// upload
+export const upload = multer({
+  storage,
+  limits: { fileSize: 4000000 },
+  fileFilter: checkFileType,
+});
 
-export function checkFileExists(filePath) {
-  try {
-    accessSync(filePath, constants.F_OK);
-    return true;
-  } catch (err) {
-    return false;
+// check file type
+function checkFileType(_, file, cb) {
+  const fileTypes = /jpeg|jpg|png|gif/;
+  const extname = fileTypes.test(
+    path.extname(file.originalname).toLocaleLowerCase()
+  );
+  const mimeType = fileTypes.test(file.mimetype);
+
+  if (mimeType && extname) {
+    return cb(null, true);
+  } else {
+    cb("Error: You can only upload image files");
   }
 }

@@ -1,26 +1,10 @@
 import { Router } from "express";
-import { uploadImage, updateImage } from "../controllers/upload.controller.js";
+import { uploadImage } from "../controllers/upload.controller.js";
 import { upload } from "../utils/upload.file.js";
-import {
-  uploadImageValidator,
-  validate,
-} from "../validators/upload.validator.js";
+
+import { protectedRoute } from "../middleware/checkAccess.js";
 const router = new Router();
 
-router.post(
-  "/uploadapi",
-  upload.single("img"),
-  uploadImageValidator,
-  validate,
-  uploadImage,
-);
-
-router.put(
-  "/updateimage",
-  upload.single("img"),
-  uploadImageValidator,
-  validate,
-  updateImage,
-);
+router.post("/uploadapi", upload.single("img"), protectedRoute, uploadImage);
 
 export default router;
