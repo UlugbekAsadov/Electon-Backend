@@ -5,7 +5,7 @@ import cors from "cors";
 import registerloginrouter from "./routers/auth.router.js";
 import uploadFilerouter from "./routers/upload.router.js";
 import { sessionMiddleware } from "./middleware/session.js";
-import { errorHandler } from "./middleware/errorheadler.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 import { notfound } from "./middleware/notfound.js";
 import { fileURLToPath } from "url";
 import path from "path";
