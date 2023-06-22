@@ -87,7 +87,8 @@ export const getUserById = asyncHandler(async (req, res) => {
 // @DESCRIPTION => Updates user with id
 export const updateUserById = asyncHandler(async (req, res) => {
   const { userId } = req.params;
-  const { firstName, lastName, age, phoneNumber, role, status } = req.body;
+  const { firstName, lastName, age, phoneNumber, role, status, profileImage } =
+    req.body;
   const user = await userdb.findById(userId);
 
   if (!user)
@@ -100,6 +101,7 @@ export const updateUserById = asyncHandler(async (req, res) => {
     phoneNumber: phoneNumber || user.phoneNumber,
     role: role || user.role,
     status: status || user.status,
+    profileImage: profileImage || user.profileImage,
   };
 
   await userdb.findByIdAndUpdate(userId, { ...updatingUser });
