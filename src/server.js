@@ -12,9 +12,9 @@ import path from "path";
 const app = express();
 const __dirname = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
-  "../",
+  "../"
 );
-dotenv.config();
+dotenv.config({ path: __dirname + ".env" });
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,7 +35,7 @@ app.listen(PORT, () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .catch((err) => console.log(err))
-    .then(() => console.log("Dasabase connected"));
+    .then(() => console.log("Dasabase connected"))
+    .catch((err) => console.log(err));
   console.log(`server is running on PORT: ${PORT}`);
 });
