@@ -5,6 +5,6 @@ import { upload } from "../utils/upload.file.js";
 import { protectedRoute } from "../middleware/checkAccess.js";
 const router = new Router();
 
-router.post("/uploadapi", upload.single("img"), protectedRoute, uploadImage);
+router.post("/image-upload", upload.single("img"), protectedRoute, uploadImage);
 
 export default router;
