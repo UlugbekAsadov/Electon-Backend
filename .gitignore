@@ -3,3 +3,4 @@
 /log.txt
 /.vscode
 /.env.example
+/public/uploads/*
