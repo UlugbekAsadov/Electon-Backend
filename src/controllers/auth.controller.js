@@ -5,7 +5,7 @@ import { SUCCESS_MESSAGES } from "../utils/enums/success-messages.js";
 import { ERROR_MESSAGES } from "../utils/enums/error-messages.js";
 import { STATUS, ROLES } from "../utils/enums/user-enum.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-
+import { generatePinCode } from "../utils/helps.js";
 // @METHOD => POST
 // @ROUTE => v1/sign-in
 // @ACCESS => ADMIN || OWN USER
@@ -128,16 +128,16 @@ export const forgotPassword = asyncHandler(async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-      user: "yusuprustam8@gmail.com", // replace with your email address
-      pass: "mmcehlacplicxuql", // replace with your email password
+      user: process.env.NOTIFIER_TO_GMAIL, // replace with your email address
+      pass: process.env.NOTIFIER_TO_GMAIL_PASS, // replace with your email password
     },
   });
   req.session.pinCode = { pin: generatePinCode(), phoneNumber };
   // Define the email options
   const mailOptions = {
-    from: "yusuprustam8@gmail.com",
+    from: process.env.NOTIFIER_TO_GMAIL,
     to: user.gmail,
-    subject: "ELECTON-BECKEND",
+    subject: process.env.NOTIFIER_TO_GMAIL_SUBJECT,
     text: "PIN :" + req.session.pinCode.pin,
   };
 
@@ -170,14 +170,3 @@ export const enterPinCode = asyncHandler(async (req, res) => {
     res.status(400).json({ message: "PIN code received is not correct" });
   }
 });
-
-function generatePinCode() {
-  const pinLength = 5;
-  let pin = "";
-  for (let i = 0; i < pinLength; i++) {
-    const digit = Math.floor(Math.random() * 10);
-    pin += digit.toString();
-  }
-
-  return pin; //random XXXXX
-}

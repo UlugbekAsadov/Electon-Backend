@@ -14,7 +14,7 @@ export function isString(inputname) {
 export function isLength(inputname, min) {
   return body(inputname)
     .isLength({ min: min })
-    .withMessage(inputname + " must be min:8 character");
+    .withMessage(inputname + ` must be min:${min} character`);
 }
 
 export function isNumber(inputname) {
