@@ -60,8 +60,8 @@ export const signIn = asyncHandler(async (req, res) => {
 
   if (!isUserMatched) {
     return res
-      .status(400)
-      .json({ message: ERROR_MESSAGES.INVALID_CREDINTIALS });
+      .status(403)
+      .json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
   }
 
   const token = await user.generateAuthToken();
@@ -87,6 +87,8 @@ export const signIn = asyncHandler(async (req, res) => {
       .status(200)
       .json({ data: userData });
   }
+
+  res.status(400).json({ message: ERROR_MESSAGES.INVALID_CREDINTIALS });
 });
 
 // @METHOD => GET
