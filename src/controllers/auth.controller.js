@@ -21,6 +21,7 @@ export const signUp = asyncHandler(async (req, res) => {
     profileImage,
   } = req.body;
   const passwordhash = await hash(password, 10);
+  const token = await user.generateAuthToken();
   const user = await userdb.create({
     gmail,
     firstName,
@@ -33,11 +34,15 @@ export const signUp = asyncHandler(async (req, res) => {
     profileImage: profileImage || "",
   });
 
-  const token = await user.generateAuthToken();
+  const userData = {
+    user,
+    accessToken: token,
+  };
+
   res
     .header("authorization", `Bearer ${token}`)
     .status(201)
-    .json({ data: user, message: SUCCESS_MESSAGES.USER_CREATED });
+    .json({ data: userData, message: SUCCESS_MESSAGES.USER_CREATED });
 });
 
 // @METHOD => POST
@@ -51,11 +56,15 @@ export const signIn = asyncHandler(async (req, res) => {
     phoneNumber,
   });
 
-  if (!user) {
-    return res.status(403).json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
+  const isUserMatched = await compare(password, user.password);
+
+  if (!isUserMatched) {
+    return res
+      .status(400)
+      .json({ message: ERROR_MESSAGES.INVALID_CREDINTIALS });
   }
 
-  const isUserMatched = await compare(password, user.password);
+  const token = await user.generateAuthToken();
 
   if (isUserMatched) {
     const { firstName, lastName, age, status, role, phoneNumber } = user;
@@ -67,13 +76,17 @@ export const signIn = asyncHandler(async (req, res) => {
       role,
       phoneNumber,
     };
-    const token = await user.generateAuthToken();
+
+    const userData = {
+      user,
+      accessToken: token,
+    };
+
     return res
       .header("authorization", `Bearer ${token}`)
       .status(200)
-      .json({ data: user });
+      .json({ data: userData });
   }
-  res.status(400).json({ message: ERROR_MESSAGES.INVALID_CREDINTIALS });
 });
 
 // @METHOD => GET
