@@ -56,14 +56,14 @@ export const signIn = asyncHandler(async (req, res) => {
     phoneNumber,
   });
 
-  const isUserMatched = await compare(password, user.password);
-
-  if (!isUserMatched) {
+  
+  if (!user) {
     return res
-      .status(403)
-      .json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
+    .status(403)
+    .json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
   }
-
+  
+  const isUserMatched = await compare(password, user.password);
   const token = await user.generateAuthToken();
 
   if (isUserMatched) {
