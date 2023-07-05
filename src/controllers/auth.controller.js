@@ -11,23 +11,15 @@ import { generatePinCode } from "../utils/helps.js";
 // @ACCESS => ADMIN || OWN USER
 // @DESCRIPTION => Logs in user to the platform
 export const signUp = asyncHandler(async (req, res) => {
-  const {
-    gmail,
-    firstName,
-    lastName,
-    password,
-    age,
-    phoneNumber,
-    profileImage,
-  } = req.body;
+  const { email, firstName, lastName, password, phoneNumber, profileImage } =
+    req.body;
   const passwordhash = await hash(password, 10);
   const token = await user.generateAuthToken();
   const user = await userdb.create({
-    gmail,
+    email,
     firstName,
     lastName,
     password: passwordhash,
-    age,
     status: STATUS.ACTIVE,
     role: ROLES.USER,
     phoneNumber,
@@ -56,13 +48,10 @@ export const signIn = asyncHandler(async (req, res) => {
     phoneNumber,
   });
 
-  
   if (!user) {
-    return res
-    .status(403)
-    .json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
+    return res.status(403).json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
   }
-  
+
   const isUserMatched = await compare(password, user.password);
   const token = await user.generateAuthToken();
 
@@ -151,7 +140,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
   // Define the email options
   const mailOptions = {
     from: process.env.NOTIFIER_TO_GMAIL,
-    to: user.gmail,
+    to: user.email,
     subject: process.env.NOTIFIER_TO_GMAIL_SUBJECT,
     text: "PIN :" + req.session.pinCode.pin,
   };

@@ -26,7 +26,6 @@ const notEmpArr = [
   "firstName",
   "lastName",
   "password",
-  "age",
   "phoneNumber",
 ].map((item) => (item = notEmpty(item)));
 
@@ -34,13 +33,13 @@ const isStrArr = ["firstName", "lastName"].map(
   (item) => (item = isString(item))
 );
 
-const isNumArr = ["age", "phoneNumber"].map((item) => (item = isNumber(item)));
+const isNumArr = ["phoneNumber"].map((item) => (item = isNumber(item)));
 const islenGthArr = ["password"].map((item) => (item = isLength(item, 8)));
 const isNumberArr = ["phoneNumber"].map((item) => isLength(item, 12));
 
 export const registerValidators = [
   body("phoneNumber").custom(checkNumberRegistrated),
-  body("gmail")
+  body("email")
     .isEmail()
     .withMessage("Email is not valid")
     .custom(async (value) => {
