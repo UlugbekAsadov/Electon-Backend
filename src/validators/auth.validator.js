@@ -21,13 +21,9 @@ const checkNumberRegistrated = async (_, { req }) => {
   return true;
 };
 
-const notEmpArr = [
-  "email",
-  "firstName",
-  "lastName",
-  "password",
-  "phoneNumber",
-].map((item) => (item = notEmpty(item)));
+const notEmpArr = ["email", "firstName", "password", "phoneNumber"].map(
+  (item) => (item = notEmpty(item))
+);
 
 const isStrArr = ["firstName", "lastName"].map(
   (item) => (item = isString(item))
