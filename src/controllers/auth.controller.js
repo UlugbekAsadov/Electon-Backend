@@ -131,7 +131,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
   const { phoneNumber } = req.body;
   const user = await userdb.findOne({ phoneNumber: phoneNumber });
   const transporter = nodemailer.createTransport({
-    service: "Gmail",
+    service: "email",
     auth: {
       user: process.env.NOTIFIER_TO_GMAIL, // replace with your email address
       pass: process.env.NOTIFIER_TO_GMAIL_PASS, // replace with your email password
