@@ -57,11 +57,10 @@ export const signIn = asyncHandler(async (req, res) => {
   const token = await user.generateAuthToken();
 
   if (isUserMatched) {
-    const { firstName, lastName, age, status, role, phoneNumber } = user;
+    const { firstName, lastName, status, role, phoneNumber } = user;
     req.session.user = {
       firstName,
       lastName,
-      age,
       status,
       role,
       phoneNumber,
@@ -101,7 +100,7 @@ export const getUserById = asyncHandler(async (req, res) => {
 // @DESCRIPTION => Updates user with id
 export const updateUserById = asyncHandler(async (req, res) => {
   const { userId } = req.params;
-  const { firstName, lastName, age, phoneNumber, role, status, profileImage } =
+  const { firstName, lastName, phoneNumber, role, status, profileImage } =
     req.body;
   const user = await userdb.findById(userId);
 
@@ -111,7 +110,6 @@ export const updateUserById = asyncHandler(async (req, res) => {
   const updatingUser = {
     firstName: firstName || user.firstName,
     lastName: lastName || user.lastName,
-    age: age || user.age,
     phoneNumber: phoneNumber || user.phoneNumber,
     role: role || user.role,
     status: status || user.status,
