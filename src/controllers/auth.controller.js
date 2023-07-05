@@ -7,14 +7,13 @@ import { STATUS, ROLES } from "../utils/enums/user-enum.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { generatePinCode } from "../utils/helps.js";
 // @METHOD => POST
-// @ROUTE => v1/sign-in
+// @ROUTE => v1/sign-up
 // @ACCESS => ADMIN || OWN USER
 // @DESCRIPTION => Logs in user to the platform
 export const signUp = asyncHandler(async (req, res) => {
   const { email, firstName, lastName, password, phoneNumber, profileImage } =
     req.body;
   const passwordhash = await hash(password, 10);
-  const token = await user.generateAuthToken();
   const user = await userdb.create({
     email,
     firstName,
@@ -25,6 +24,8 @@ export const signUp = asyncHandler(async (req, res) => {
     phoneNumber,
     profileImage: profileImage || "",
   });
+  const token = await user.generateAuthToken();
+
 
   const userData = {
     user,
@@ -38,7 +39,7 @@ export const signUp = asyncHandler(async (req, res) => {
 });
 
 // @METHOD => POST
-// @ROUTE => v1/sign-up
+// @ROUTE => v1/sign-in
 // @ACCESS => USER / MODERATOR / ADMIN
 // @DESCRIPTION => Registers user to the platform
 export const signIn = asyncHandler(async (req, res) => {
