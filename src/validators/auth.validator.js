@@ -22,7 +22,7 @@ const checkNumberRegistrated = async (_, { req }) => {
 };
 
 const notEmpArr = [
-  "gmail",
+  "email",
   "firstName",
   "lastName",
   "password",
