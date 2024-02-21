@@ -1,7 +1,112 @@
 {
   "data": {
-    "income": 0,
-    "outcome": 0
-},
-  "transactions": []
+    "income": 15000,
+    "outcome": 13815
+  },
+  "transactions": [
+    {
+      "id": "a945",
+      "title": "Salary",
+      "price": "1200",
+      "action": "INCOME",
+      "comment": "First Salary",
+      "timestamp": 1708511979587
+    },
+    {
+      "id": "877e",
+      "title": "Loan",
+      "price": "200",
+      "action": "INCOME",
+      "comment": "Loan returned",
+      "timestamp": 1708512700958
+    },
+    {
+      "id": "e70e",
+      "title": "Purchase",
+      "price": "700",
+      "action": "OUTCOME",
+      "comment": "New Macbook air",
+      "timestamp": 1708512732964
+    },
+    {
+      "id": "49bf",
+      "title": "Rent",
+      "price": "300",
+      "action": "OUTCOME",
+      "comment": "Home rent January",
+      "timestamp": 1708512840678
+    },
+    {
+      "id": "1c1f",
+      "title": "Rent",
+      "price": "100",
+      "action": "OUTCOME",
+      "comment": "Car rent for January",
+      "timestamp": 1708512863212
+    },
+    {
+      "id": "9275",
+      "title": "Passive Income",
+      "price": "400",
+      "action": "INCOME",
+      "comment": "project finished",
+      "timestamp": 1708512933431
+    },
+    {
+      "id": "1956",
+      "title": "Purchase",
+      "price": "15",
+      "action": "OUTCOME",
+      "comment": "Monthly Internet",
+      "timestamp": 1708512976364
+    },
+    {
+      "id": "8aac",
+      "title": "Birthday Income",
+      "price": "3000",
+      "action": "INCOME",
+      "comment": "from Dad",
+      "timestamp": 1708513001008
+    },
+    {
+      "id": "9264",
+      "title": "Purchase",
+      "price": "1200",
+      "action": "OUTCOME",
+      "comment": "IPhone purchase",
+      "timestamp": 1708513063930
+    },
+    {
+      "id": "b7f8",
+      "title": "Sell Car",
+      "price": "9000",
+      "action": "INCOME",
+      "comment": "Sold my car",
+      "timestamp": 1708513118816
+    },
+    {
+      "id": "28b4",
+      "title": "Purchase",
+      "price": "11000",
+      "action": "OUTCOME",
+      "comment": "Purchased new Car",
+      "timestamp": 1708513134314
+    },
+    {
+      "id": "934d",
+      "title": "Salary ",
+      "price": "1200",
+      "action": "INCOME",
+      "comment": "Second Salary",
+      "timestamp": 1708513161600
+    },
+    {
+      "id": "f01d",
+      "title": "Purchase",
+      "price": "500",
+      "action": "OUTCOME",
+      "comment": "Purchased IPhone 11",
+      "timestamp": 1708513221765
+    }
+  ]
 }
